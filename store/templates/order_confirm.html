@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #343a40;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .header img {
+            max-width: 150px;
+        }
+        .content {
+            text-align: center;
+        }
+        .content h1 {
+            color: #28a745;
+        }
+        .content p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .order-details {
+            margin: 20px 0;
+            text-align: left;
+        }
+        .order-details h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .order-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-details table th, .order-details table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: left;
+        }
+        .order-details table th {
+            background-color: #f1f1f1;
+        }
+        .footer {
+            text-align: center;
+            border-top: 1px solid #dee2e6;
+            padding-top: 20px;
+            margin-top: 20px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Company Logo">
+        </div>
+        <div class="content">
+            <h1>Order Confirmed</h1>
+            <p>Thank you for your purchase! Your order has been confirmed and is being processed.</p>
+        </div>
+        <div class="col-lg-6">
+			<div class="box-element">
+				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+				<hr>
+				<h3>Order Summary</h3>
+				<hr>
+				{% for item in items %}
+				<div class="cart-row">
+					<div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+					<div style="flex:2"><p>{{item.product.name}}</p></div>
+					<div style="flex:1"><p>{{item.product.price}}</p></div>
+					<div style="flex:1"><p>x2{{item.quantity}}</p></div>
+				</div>
+				{% endfor %}
+
+				<h5>Items: {{order.get_cart_items}}</h5>
+				<h5>Total: rupee {{order.get_cart_total|floatformat:2}}</h5>
+			</div>
+        <div class="footer">
+            <p>If you have any questions, feel free to <a href="contact.html">contact us</a>.</p>
+            <p>&copy; 2024 Your Company Name</p>
+        </div>
+    </div>
+    <script></script>
+</body>
+</html>
